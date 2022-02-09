@@ -32,6 +32,6 @@ def plotlyboxplot(data, y):
     fig = make_subplots(rows=1, cols=len(y))
 
     for i, col in enumerate(y):
-        fig.add_trace(go.Box(y=dataset[col], name=col), row=1, col=i+1 )
+        fig.add_trace(go.Box(y=data[col], name=col), row=1, col=i+1 )
 
     fig.show()
