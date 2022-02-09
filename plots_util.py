@@ -7,7 +7,6 @@ import pandas as pd
 
 #Plot several boxplots using seaborn
 def seabornboxplot(data: pd.DataFrame, y: list):
-  
   '''
   Plot boxplots using seaborn
   
