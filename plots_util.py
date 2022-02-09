@@ -7,14 +7,14 @@ import pandas as pd
 
 #Plot several boxplots using seaborn
 def seabornboxplot(data: pd.DataFrame, y: list):
-  '''
-  Plot boxplots using seaborn
-  
-  args:
+    '''
+    Plot boxplots using seaborn
+
+    args:
     data: data frame
     y: name of variables to plot 
-  '''
-    
+    '''
+
     fig , ax = plt.subplots(ncols=len(y), figsize=(30,7))
     for i, col in enumerate(y):
         sns.boxplot(data=data, y=col, ax=ax[i])
