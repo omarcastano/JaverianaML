@@ -35,3 +35,33 @@ def plotlyboxplot(data, y):
         fig.add_trace(go.Box(y=data[col], name=col), row=1, col=i+1 )
 
     fig.show()
+    
+#Plot several histograms using seaborn
+def seabornhistograms(data: pd.DataFrame, variables: list):
+    '''
+    Plot histograms using seaborn
+
+    Args:
+        data: data frame
+        variables: name of variables to plot 
+    '''
+
+    fig , ax = plt.subplots(ncols=len(variables), figsize=(30,7))
+    for i, col in enumerate(variables):
+        sns.histplot(data=data, x=col, ax=ax[i])
+
+#Plot several histograms using plotly
+def plotlyhistograms(data, variables):
+    '''
+    Plot histograms using plotly
+
+    Args:
+        Data: data frame
+        variables: name of variables to plot 
+    '''
+  
+    fig = make_subplots(rows=1, cols=len(variables))
+    for i, col in enumerate(variables):
+        fig.add_trace(go.Histogram(x=data[col], name=col), row=1, col=i+1 )
+
+    fig.show()
