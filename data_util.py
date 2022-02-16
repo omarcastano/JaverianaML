@@ -22,4 +22,4 @@ def poly_data_generator():
 
     X_test = test_data[["X"]]
     y_test = test_data["y"]
-    return X_train, X_test, y_train, y_test
+    return X_train.to_numpy(), X_test.to_numpy(), y_train.to_numpy(), y_test.to_numpy()
