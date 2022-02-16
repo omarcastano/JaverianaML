@@ -17,4 +17,4 @@ def OutlierDetection(data:pd.DataFrame, variable:str, factor:float = 1.5):
     q3 = data[variable].quantile(q=0.75)
     IQR = q3 - q1 
 
-    return data.loc[data[variable] > q3 + factor*IQR, varaible]
+    return data.loc[data[variable] > q3 + factor*IQR, variable]
