@@ -27,5 +27,4 @@ def PolynomialRegression(degree, X_train, X_test, y_train, y_test):
     plt.plot(x, model.predict(x), 'r')
     plt.xlim(-0.01, 1)
     plt.ylim(-0.1, 11)
-    
-    return fig
+  
