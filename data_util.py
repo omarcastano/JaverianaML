@@ -3,7 +3,7 @@ import pandas as pd
 
 #Generate artificial polinomial data
 def poly_data_generator(n=50):
-    N=n
+ 
     def make_data(N=N, err=0.8, rseed=1):
     # randomly sample the data
         rng = np.random.RandomState(rseed)
@@ -12,15 +12,6 @@ def poly_data_generator(n=50):
         if err > 0:
             y += err * rng.randn(N)
         return X, y
-    X1, y1 = make_data(N=int(N*0.8), rseed = 0)
-    X2, y2 = make_data(N=int(N*0.2), rseed = 42)
+    X, y = make_data(N=n, rseed = 0)
 
-    train_data = pd.DataFrame({'X':X1.ravel(), 'y':y1})
-    test_data = pd.DataFrame({'X':X2.ravel(), 'y':y2})
-
-    X_train = train_data[["X"]]
-    y_train = train_data["y"]
-
-    X_test = test_data[["X"]]
-    y_test = test_data["y"]
-    return X_train.to_numpy(), X_test.to_numpy(), y_train.to_numpy(), y_test.to_numpy()
+    return X, y
