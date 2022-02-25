@@ -8,11 +8,11 @@ from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.pipeline import Pipeline
 
 #Implements polinomial regression
-def PolynomialRegression(degree, X_train, X_test, y_train, y_test):
+def PolynomialRegression(estimator ,degree, X_train, X_test, y_train, y_test):
     #Pipeline
     model  = Pipeline(steps=[
                          ('poly', PolynomialFeatures(degree=degree)),
-                         ('lin_reg', LinearRegression())])
+                         ('lin_reg', estimator)])
 
     #Fit the model
     model.fit(X_train, y_train)
@@ -30,4 +30,4 @@ def PolynomialRegression(degree, X_train, X_test, y_train, y_test):
     plt.plot(x, model.predict(x), 'r')
     plt.xlim(-0.01, 1)
     plt.ylim(-0.1, 11)
-  
+ 
