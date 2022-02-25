@@ -26,7 +26,7 @@ def PolynomialRegression(estimator ,degree, X_train, X_test, y_train, y_test, pr
     print('RMSE_train =', np.sqrt(mean_squared_error(y_train ,model.predict(X_train))).round(5) )
     print('RMSE_test =', np.sqrt(mean_squared_error(y_test ,model.predict(X_test))).round(5) )
     if print_coef:
-        print(model['lin_reg'].coef_)
+        print("W = \n" ,model['lin_reg'].coef_)
     x = np.linspace(0,1).reshape(-1,1)
     plt.plot(x, model.predict(x), 'r')
     plt.xlim(-0.01, 1)
