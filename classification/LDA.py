@@ -30,7 +30,7 @@ def Gaussian_plot(DB, shared_variance=False):
     std2 = iris.groupby('species')['petal_width'].std()['versicolor']
     
     if shared_variance:
-        std =np.sqrt( 0.5*std**2 +  0.5*std1**2 )
+        std =np.sqrt( 0.5*std2**2 +  0.5*std1**2 )
         std1 = std
         std2 = std
 
