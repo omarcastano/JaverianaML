@@ -41,7 +41,7 @@ def Gaussian_plot(DB, shared_variance=False):
     plt.fill_between(x2, stats.norm.pdf(x2, mu2, std2), alpha=0.5, label="versicolor")
     plt.vlines(DB,0,2.1)
     plt.text(0.9,1.5, r'$P(X|C_1)$', fontsize=20)
-    plt.text(2.1,1.7, r'$P(X|C_2)$', fontsize=20)
+    plt.text(2.3,1.5, r'$P(X|C_2)$', fontsize=20)
     plt.xlabel("petal_width")
     plt.ylabel("Density")
     plt.legend()
