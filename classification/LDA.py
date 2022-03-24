@@ -105,7 +105,7 @@ def Gaussian_3d_plot(w0, w):
     line = go.Scatter(x=x, y=y,  mode='lines', name='virginica', marker_color='black')
 
     fig.add_traces([scatter_1, scatter_2, line], rows=1, cols=2)
-    fig.update_yaxes(title_text="petal_length", row=1, col=1)
-    fig.update_xaxes(title_text="petal_width", row=1, col=1)
+    fig.update_yaxes(title_text="petal_length", row=1, col=2)
+    fig.update_xaxes(title_text="petal_width", row=1, col=2)
     fig.update_layout(width=900*2, height=600)
     fig.show()
