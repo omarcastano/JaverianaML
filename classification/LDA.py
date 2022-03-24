@@ -35,16 +35,16 @@ def Gaussian_plot(DB, shared_variance=False):
         std2 = std
 
     x1 = np.linspace(mu1 - 3*std1, mu1 + 3*std1, 100)
-    ax[0].fill_between(x1, stats.norm.pdf(x1, mu1, std1), alpha=0.5, label="virginica")
+    ax[0].fill_between(x1, stats.norm.pdf(x1, mu1, std1)*0.5, alpha=0.5, label="virginica")
 
     x2 = np.linspace(mu2 - 3*std2, mu1 + 3*std2, 100)
-    ax[0].fill_between(x2, stats.norm.pdf(x2, mu2, std2), alpha=0.5, label="versicolor")
+    ax[0].fill_between(x2, stats.norm.pdf(x2, mu2, std2)*0.5, alpha=0.5, label="versicolor")
     sns.scatterplot(data=iris, x='petal_width', y='species', hue='species', hue_order =['virginica', 'versicolor'], ax=ax[1])
 
-    ax[0].vlines(DB,0,2.1)
+    ax[0].vlines(DB,0,1)
     ax[1].vlines(DB,0,1)
-    ax[0].text(0.8,1.5, r'$P(X|C_1)$', fontsize=20)
-    ax[0].text(2.1,1.5, r'$P(X|C_2)$', fontsize=20)
+    ax[0].text(0.7,0.9, r'$P(X|C_1)P(C_1)$', fontsize=20)
+    ax[0].text(1.9,0.9, r'$P(X|C_2)P(C_2)$', fontsize=20)
     ax[0].set_xlabel("petal_width")
     ax[0].set_ylabel("Density")
     ax[0].legend()
