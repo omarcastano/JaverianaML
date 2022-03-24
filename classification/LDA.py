@@ -43,7 +43,7 @@ def Gaussian_plot(DB, shared_variance=False):
 
     ax[0].vlines(DB,0,2.1)
     ax[1].vlines(DB,0,1)
-    ax[0].text(0.9,1.5, r'$P(X|C_1)$', fontsize=20)
+    ax[0].text(0.8,1.5, r'$P(X|C_1)$', fontsize=20)
     ax[0].text(2.3,1.5, r'$P(X|C_2)$', fontsize=20)
     ax[0].set_xlabel("petal_width")
     ax[0].set_ylabel("Density")
