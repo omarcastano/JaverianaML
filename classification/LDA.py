@@ -48,3 +48,64 @@ def Gaussian_plot(DB, shared_variance=False):
     ax[0].set_xlabel("petal_width")
     ax[0].set_ylabel("Density")
     ax[0].legend()
+
+   
+def Gaussian_3d_plot(w0, w):
+
+    from plotly.subplots import make_subplots
+    import scipy.stats as stats
+    import plotly.graph_objects as go
+    import plotly.express as px
+    iris = sns.load_dataset('iris')
+    iris = iris.loc[iris.species != 'setosa', :]
+
+    means = iris.groupby("species", as_index=False).mean()[['species','petal_width', 'petal_length']]
+    mu1 = means.loc[means.species=='versicolor', ['petal_width', 'petal_length']].to_numpy().ravel()
+    mu2 = means.loc[means.species=='virginica', ['petal_width', 'petal_length']].to_numpy().ravel()
+
+    cov1 = iris.loc[iris.species=='versicolor' ,['petal_width', 'petal_length']].cov().to_numpy()
+    cov2 = iris.loc[iris.species=='virginica' ,['petal_width', 'petal_length']].cov().to_numpy()
+
+    cov = 0.5*cov1 + 0.5*cov2
+
+    xs = np.linspace(0.5, 3.0, 100)
+    zs = np.linspace(0, 1.4, 100)
+
+    X, Z = np.meshgrid(xs, zs)
+    Y = w*X + w0
+
+    x1, y1 = np.mgrid[0.5:1.9:200j, 2.5:5.3:200j]
+    x2, y2 = np.mgrid[1.3:2.6:200j, 4.5:7:200j]
+
+
+    xy1 = np.column_stack([x1.flat, y1.flat])
+    xy2 = np.column_stack([x2.flat, y2.flat])
+
+    cmap = plt.get_cmap("tab10")
+    colorscale = [[0, 'rgb' + str(cmap(1)[0:3])], [1, 'rgb' + str(cmap(2)[0:3])]]
+
+    z1 = stats.multivariate_normal.pdf(xy1, mean=mu1, cov=cov)
+    z1 = z1.reshape(x1.shape)
+
+    z2 = stats.multivariate_normal.pdf(xy2, mean=mu2, cov=cov)
+    z2 = z2.reshape(x2.shape)
+
+    fig = make_subplots(rows=1, cols=2, specs=[[{'is_3d': True}, {'is_3d': False}]])
+    trace_a = go.Surface(x=x1, y=y1, z=z1, cmin=0, cmax=1, surfacecolor=np.zeros(shape=z1.shape), colorscale= colorscale, showscale=False, name="versicolor", opacity=0.8) 
+    trace_b = go.Surface(x=x2, y=y2,z=z2, cmin=0, cmax=1, surfacecolor=np.ones(shape=z2.shape) , colorscale= colorscale, showscale=False, name="virginica", opacity=0.8)
+    trace_c = go.Surface(x=X, y=Y,z=Z, cmin=0, cmax=1, surfacecolor=np.ones(shape=z2.shape)*0.5 , colorscale= colorscale, showscale=False, name="virginica")
+    fig.add_traces([trace_a, trace_b, trace_c], rows=1, cols=1)
+    fig.update_scenes(xaxis_title_text="petal_width", yaxis_title_text="petal_length")
+
+    scatter_1 = go.Scatter(x=iris[iris.species=='versicolor'].petal_width, y=iris[iris.species=='versicolor'].petal_length,  mode='markers', name='versicolor', marker_color='red')
+    scatter_2 = go.Scatter(x=iris[iris.species=='virginica'].petal_width, y=iris[iris.species=='virginica'].petal_length,  mode='markers', name='virginica', marker_color='green')
+
+    x=np.linspace(1,2.5,100)
+    y=w*x+w0
+    line = go.Scatter(x=x, y=y,  mode='lines', name='virginica', marker_color='black')
+
+    fig.add_traces([scatter_1, scatter_2, line], rows=1, cols=2)
+    fig.update_yaxes(title_text="petal_length", row=1, col=1)
+    fig.update_xaxes(title_text="petal_width", row=1, col=1)
+    fig.update_layout(width=900*2, height=600)
+    fig.show()
