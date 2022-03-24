@@ -39,7 +39,7 @@ def Gaussian_plot(DB, shared_variance=False):
 
     x2 = np.linspace(mu2 - 3*std2, mu1 + 3*std2, 100)
     ax[0].fill_between(x2, stats.norm.pdf(x2, mu2, std2), alpha=0.5, label="versicolor")
-    sns.scatterplot(data=iris, x='petal_width', y='species', hue='species', , hue_order =['virginica', 'versicolor'], ax=ax[1])
+    sns.scatterplot(data=iris, x='petal_width', y='species', hue='species', hue_order =['virginica', 'versicolor'], ax=ax[1])
 
     ax[0].vlines(DB,0,2.1)
     ax[1].vlines(DB,0,1)
