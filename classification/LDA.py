@@ -37,7 +37,7 @@ def Binary_Gaussian_Plot(DB, shared_variance=False):
     x1 = np.linspace(mu1 - 3*std1, mu1 + 3*std1, 100)
     ax[0].fill_between(x1, stats.norm.pdf(x1, mu1, std1)*0.5, alpha=0.5, label="virginica")
 
-    x2 = np.linspace(mu2 - 3*std2, mu1 + 3*std2, 100)
+    x2 = np.linspace(mu2 - 3*std2, mu2 + 3*std2, 100)
     ax[0].fill_between(x2, stats.norm.pdf(x2, mu2, std2)*0.5, alpha=0.5, label="versicolor")
     sns.scatterplot(data=iris, x='petal_width', y='species', hue='species', hue_order =['virginica', 'versicolor'], ax=ax[1])
 
