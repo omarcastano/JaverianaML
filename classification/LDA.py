@@ -14,7 +14,7 @@ import scipy.stats as stats
 
 
 ##Normal distribution for iris dataset
-def Gaussian_plot(DB, shared_variance=False):
+def Binary_Gaussian_Plot(DB, shared_variance=False):
     '''
     Density plot of P(petal_width|y=c) assuming Gaussin pdfs for each class
     '''
