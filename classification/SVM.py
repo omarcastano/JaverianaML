@@ -76,3 +76,35 @@ def kernel_trick(basis_function='poly'):
         ax[0].set_xlabel('x', fontsize=15)
         ax[1].set_xlabel(r'$\sigma (\gamma (x-\mu_2) + r)$', fontsize=15)
         ax[1].set_ylabel(r'$\sigma (\gamma (x-\mu_1) + r)$', fontsize=15)
+
+        
+        
+def Transformed_Features_Model(degree=2, model='logistic', dataset='spirals'):
+
+    #Select de dataset
+    if dataset == 'spirals':
+        data  = pd.read_csv('https://raw.githubusercontent.com/diplomado-bigdata-machinelearning-udea/Curso2/master/Datasets/two_spirals.csv')
+        X = data[['x1', 'x2']].to_numpy()
+        y = data['target'].to_numpy()
+    elif dataset == 'circles':
+        X , y = make_circles(n_samples=300, noise=0.1, random_state=42, factor=0.2)
+
+    #Select the model
+    if  model == 'logistic':
+        estimator = LogisticRegression(max_iter=1000) 
+    elif model == 'smv':
+        estimator = SVC(kernel='linear')
+
+
+    model = Pipeline([
+                    ('poly', PolynomialFeatures(degree=degree, include_bias=False)),
+                    ('scale', StandardScaler()), 
+                    ('logit', LogisticRegression(max_iter=1000))
+    ])
+
+    model.fit(X, y)
+    df = pd.DataFrame(model['poly'].transform(X), columns=model['poly'].get_feature_names_out())
+    print('columns:' ,df.columns)
+
+    plt.figure(figsize=(10,8))
+    plot_decision_regions(X, y, model)  
