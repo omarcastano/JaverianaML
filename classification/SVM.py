@@ -10,6 +10,8 @@ from sklearn.preprocessing import StandardScaler
 from mlxtend.plotting import plot_decision_regions
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
+from sklearn.datasets import make_circles
+from sklearn.preprocessing import PolynomialFeatures
 
 
 ##plot desicion region SVM
