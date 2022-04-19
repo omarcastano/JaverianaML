@@ -4,13 +4,16 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 from sklearn.datasets import load_diabetes
-from sklearn.model_selection import train_test_split, cross_validate
+from sklearn.linear_model import LogisticRegression, SGDClassifier
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
-import ipywidgets as widgets
-from IPython.display import display
+from sklearn.pipeline import Pipeline
+from mlxtend.plotting import plot_decision_regions
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis, QuadraticDiscriminantAnalysis
+import ipywidgets as widgets
+from JaverianaML.classification import LDA
+from IPython.display import display
 import scipy.stats as stats
 import sklearn as skl
 
