@@ -180,11 +180,11 @@ def LDA_on_different_datasets(dataset='blobs'):
 
     #Create sinthetic dataset
     if dataset == 'blobs':
-        X, y = skl.datasets.make_blobs(n_samples=300, cluster_std=3, centers=2, random_state=42)
+        X, y = skl.datasets.make_blobs(n_samples=1000, cluster_std=3, centers=2, random_state=42)
     elif dataset == 'circle':
-        X, y = skl.datasets.make_circles(n_samples=300, noise=0.1, factor=0.5, random_state=42)
+        X, y = skl.datasets.make_circles(n_samples=1000, noise=0.1, factor=0.5, random_state=42)
     elif dataset == 'moons':
-        X, y = skl.datasets.make_moons(n_samples=300, noise=0.1, random_state=42)
+        X, y = skl.datasets.make_moons(n_samples=1000, noise=0.1, random_state=42)
 
 
     #Fit linear discriminanat analysis model
@@ -192,3 +192,31 @@ def LDA_on_different_datasets(dataset='blobs'):
     plot_decision_regions(X, y, clf=LinearDiscriminantAnalysis().fit(X,y))
     plt.xlabel(r'$x_1$', fontsize=20)
     plt.ylabel(r'$x_1$', fontsize=20)
+
+  
+
+def QDA_on_different_datasets(dataset='blobs'):
+
+    """
+    This function fits QDA model using different synthetic datasets
+
+    Arguments:
+        dataset: string
+            One of 'blobs', 'circle' or 'moons' which indicates the 
+            sythetic dataset to be created.
+    """
+
+
+    #Create sinthetic dataset
+    if dataset == 'blobs':
+        X, y = skl.datasets.make_blobs(n_samples=1000, cluster_std=3, centers=2, random_state=42)
+    elif dataset == 'circle':
+        X, y = skl.datasets.make_circles(n_samples=1000, noise=0.1, factor=0.5, random_state=42)
+    elif dataset == 'moons':
+        X, y = skl.datasets.make_moons(n_samples=1000, noise=0.1, random_state=42)
+
+
+    #Fit linear discriminanat analysis model
+    plt.figure(figsize=(10,8))
+    plot_decision_regions(X, y, clf=QuadraticDiscriminantAnalysis().fit(X,y))
+    plt.xlabel(r'$x_1$', fontsize=20)
