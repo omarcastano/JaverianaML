@@ -98,7 +98,7 @@ def Multiclass_Gaussian_Plot(DB1, DB2, shared_variance=False):
     ax[0].set_ylabel("Density")
     ax[0].legend() 
 
-
+ 
    
 def Gaussian_3d_plot(w0, w):
 
@@ -159,3 +159,31 @@ def Gaussian_3d_plot(w0, w):
     fig.update_xaxes(title_text="petal_width", row=1, col=2)
     fig.update_layout(width=900*2, height=600)
     fig.show()
+    
+
+def LDA_on_different_datasets(dataset='blobs'):
+
+    """
+    This function fits LDA model using different synthetic datasets
+
+    Arguments:
+        dataset: string
+            One of 'blobs', 'circle' or 'moons' which indicates the 
+            sythetic dataset to be created.
+    """
+
+
+    #Create sinthetic dataset
+    if dataset == 'blobs':
+        X, y = skl.datasets.make_blobs(n_samples=300, cluster_std=3, centers=2, random_state=42)
+    elif dataset == 'circle':
+        X, y = skl.datasets.make_circles(n_samples=300, noise=0.1, factor=0.5, random_state=42)
+    elif dataset == 'moons':
+        X, y = skl.datasets.make_moons(n_samples=300, noise=0.1, random_state=42)
+
+
+    #Fit linear discriminanat analysis model
+    plt.figure(figsize=(10,8))
+    plot_decision_regions(X, y, clf=LinearDiscriminantAnalysis().fit(X,y))
+    plt.xlabel(r'$x_1$', fontsize=20)
+    plt.ylabel(r'$x_1$', fontsize=20)
