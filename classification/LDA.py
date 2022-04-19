@@ -10,7 +10,9 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 import ipywidgets as widgets
 from IPython.display import display
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis, QuadraticDiscriminantAnalysis
 import scipy.stats as stats
+import sklearn as skl
 
 
 ##Normal distribution for iris dataset
